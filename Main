@@ -1,0 +1,55 @@
+
+package u5examen;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+ * @author Dominguez Cazales Jennifer
+ */
+public class U5Examen {
+    //El txt fue separado por comas 
+    //Use estos numeros
+    //1,2,8,9,10,51,10,100,107,7,28
+    public static void muestraContenido(String archivo) throws FileNotFoundException, IOException {
+        String cadena;
+        FileReader f = new FileReader(archivo);
+        BufferedReader b = new BufferedReader(f);
+        cadena = b.readLine();
+        String [] numeros =(cadena.split(","));
+        Ordenar(numeros); 
+        b.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+        muestraContenido("C:\\numeros.txt");
+    }
+    public static void Ordenar(String [] numeros){
+       int []num=new int[numeros.length]; 
+        for (int i = 0; i < numeros.length; i++) {
+            num[i]=Integer.parseInt(numeros[i]);
+        }
+       System.out.println("Arreglo inicial");
+        for (int i = 0; i < num.length; i++) {
+            System.out.print(num[i]+"\t");
+        }
+             for (int i = 0; i < num.length; i++) {
+            for (int j = 0; j < num.length-1; j++) {
+                if (num[j]>num[j+1]) {
+                    int auxiliar= num[j+1];
+                    num[j+1]=num[j];
+                    num[j]=auxiliar;
+                }
+            }
+        }
+        //Mostrar
+        System.out.println("\nArreglo Ordenado");
+        for (int i = 0; i < num.length; i++) {
+            System.out.print(num[i]+"\t");
+        }   
+        System.out.println("");
+    }
+}
